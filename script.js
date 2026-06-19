@@ -7,26 +7,26 @@ let board = new Array(9);
 
 allSquares.forEach((square, i) => {
   square.addEventListener("click", () => {
-    if (square.innerHTML || gameOver) {
+    if (square.textContent || gameOver) {
       // Invalid click 
       return;
     }
 
     board[i] = currentPlayer;
-    square.innerHTML = currentPlayer;
+    square.textContent = currentPlayer;
 
     if (checkWin()) {
-      title.innerHTML = `${currentPlayer} Won The Game!`;
+      title.textContent = `${currentPlayer} Won The Game!`;
       return (gameOver = true);
     }
 
     if (checkTie()) {
-      title.innerHTML = `Draw!`;
+      title.textContent = `Draw!`;
       return (gameOver = true);
     }
 
     switchPlayers();
-    title.innerHTML = `${currentPlayer}'s Turn`;
+    title.textContent = `${currentPlayer}'s Turn`;
   });
 });
 
@@ -70,13 +70,13 @@ function checkTie() {
 
 function resetGame() {
   gameOver = false;
+  currentPlayer = "X";
   board = new Array(9);
+
   allSquares.forEach((square) => {
-    square.innerHTML = "";
-  
-    currentPlayer = "X";
+    square.textContent = ""; 
   });
-    title.innerHTML = `${currentPlayer}'s turn`;
+    title.textContent = `${currentPlayer}'s turn`;
 }
 
 function switchPlayers() {
